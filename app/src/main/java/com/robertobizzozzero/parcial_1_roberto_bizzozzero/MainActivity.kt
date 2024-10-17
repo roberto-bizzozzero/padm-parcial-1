@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.RadioButton
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -39,6 +38,14 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview() {
+    Parcial_1_roberto_bizzozzeroTheme {
+        FormularioProducto()
+    }
+}
+
 @Composable
 fun FormularioProducto() {
     var nombreProducto by remember { mutableStateOf("") }
@@ -46,7 +53,7 @@ fun FormularioProducto() {
     var marca by remember { mutableStateOf("") }
     var existencia by remember { mutableStateOf("") }
     var categoriaSeleccionada by remember { mutableStateOf("") }
-    val categorias = listOf("Electrónica", "Ropa", "Alimentos")
+    val listaCategoria = listOf("Electrónica", "Ropa", "Alimentos")
 
     Column(
         modifier = Modifier
@@ -81,9 +88,9 @@ fun FormularioProducto() {
             label = { Text("Existencia") },
             modifier = Modifier.fillMaxWidth()
         )
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(20.dp))
         Text("Categoría:")
-        categorias.forEach { categoria ->
+        listaCategoria.forEach { categoria ->
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -97,7 +104,6 @@ fun FormularioProducto() {
         Spacer(modifier = Modifier.height(16.dp))
         Button(
             onClick = {
-                // Borrar el contenido de los campos para permitir ingresar el siguiente producto
                 nombreProducto = ""
                 precio = ""
                 marca = ""
@@ -110,13 +116,5 @@ fun FormularioProducto() {
         ) {
             Text("Enviar")
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    Parcial_1_roberto_bizzozzeroTheme {
-        FormularioProducto()
     }
 }
